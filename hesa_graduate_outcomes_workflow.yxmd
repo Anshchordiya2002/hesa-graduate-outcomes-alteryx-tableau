@@ -1,0 +1,257 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2025.2" RunE2="T">
+  <Nodes>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="42" y="198" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords />
+          <File OutputFileName="" RecordLimit="" SearchSubDirs="False" FileFormat="0">C:\Users\Ansh\Downloads\table-26\table-26-2023-24.csv</File>
+          <FormatSpecificOptions>
+            <CodePage>28591</CodePage>
+            <Delimeter>,</Delimeter>
+            <IgnoreErrors>False</IgnoreErrors>
+            <FieldLen>254</FieldLen>
+            <AllowShareWrite>False</AllowShareWrite>
+            <HeaderRow>True</HeaderRow>
+            <IgnoreQuotes>DoubleQuotes</IgnoreQuotes>
+            <ImportLine>14</ImportLine>
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>table-26-2023-24.csv</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="UKPRN" size="254" source="File: C:\Users\Ansh\Downloads\table-26\table-26-2023-24.csv" type="V_WString" />
+            <Field name="Provider name" size="254" source="File: C:\Users\Ansh\Downloads\table-26\table-26-2023-24.csv" type="V_WString" />
+            <Field name="Country of provider" size="254" source="File: C:\Users\Ansh\Downloads\table-26\table-26-2023-24.csv" type="V_WString" />
+            <Field name="Mode of former study" size="254" source="File: C:\Users\Ansh\Downloads\table-26\table-26-2023-24.csv" type="V_WString" />
+            <Field name="Skill group" size="254" source="File: C:\Users\Ansh\Downloads\table-26\table-26-2023-24.csv" type="V_WString" />
+            <Field name="Work population marker" size="254" source="File: C:\Users\Ansh\Downloads\table-26\table-26-2023-24.csv" type="V_WString" />
+            <Field name="Salary band" size="254" source="File: C:\Users\Ansh\Downloads\table-26\table-26-2023-24.csv" type="V_WString" />
+            <Field name="Academic year" size="254" source="File: C:\Users\Ansh\Downloads\table-26\table-26-2023-24.csv" type="V_WString" />
+            <Field name="Number" size="254" source="File: C:\Users\Ansh\Downloads\table-26\table-26-2023-24.csv" type="V_WString" />
+            <Field name="Percent" size="254" source="File: C:\Users\Ansh\Downloads\table-26\table-26-2023-24.csv" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="174" y="198" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="Provider name" selected="True" />
+            <SelectField field="Skill group" selected="True" />
+            <SelectField field="Salary band" selected="True" />
+            <SelectField field="Number" selected="True" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="306" y="186" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Expression>[Salary band] != "Total"
+AND [Skill group] == "All"
+AND [Number] != "0"</Expression>
+          <Mode>Custom</Mode>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[Salary band] != "Total"
+AND [Skill group] == "All"
+AND [Number] != "0"</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="4">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="450" y="138" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="IIF(Contains([Salary band], &quot;Less than&quot;), 12500,&#xA;IIF(Contains([Salary band], &quot;15,000&quot;), 16500,&#xA;IIF(Contains([Salary band], &quot;18,000&quot;), 19500,&#xA;IIF(Contains([Salary band], &quot;21,000&quot;), 22500,&#xA;IIF(Contains([Salary band], &quot;24,000&quot;), 25500,&#xA;IIF(Contains([Salary band], &quot;27,000&quot;), 28500,&#xA;IIF(Contains([Salary band], &quot;30,000&quot;), 31500,&#xA;IIF(Contains([Salary band], &quot;33,000&quot;), 34500,&#xA;IIF(Contains([Salary band], &quot;36,000&quot;), 37500,&#xA;IIF(Contains([Salary band], &quot;39,000&quot;), 40500,&#xA;IIF(Contains([Salary band], &quot;42,000&quot;), 43500,&#xA;IIF(Contains([Salary band], &quot;45,000&quot;), 46500,&#xA;IIF(Contains([Salary band], &quot;48,000&quot;), 49500,&#xA;IIF(Contains([Salary band], &quot;51,000&quot;), 55000,&#xA;0))))))))))))))" field=" Salary_Midpoint" size="4" type="Int32" enabled="true" />
+            <FormulaField expression="ToNumber([Number])" field="Graduate_Count" size="4" type="Int32" enabled="true" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText><![CDATA[ Salary_Midpoint = IIF(Contains([Salary band], "Less than"), 12500,
+IIF(Contains...]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="5">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="558" y="126" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="Provider name" action="GroupBy" rename="Provider name" />
+            <SummarizeField field=" Salary_Midpoint" action="Avg" rename="AvgNo0_ Salary_Midpoint" />
+            <SummarizeField field="Graduate_Count" action="Sum" rename="Sum_Graduate_Count" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="6">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
+        <Position x="642" y="114" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SortInfo locale="1033">
+            <Field field="AvgNo0_ Salary_Midpoint" order="Descending" />
+          </SortInfo>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>AvgNo0_ Salary_Midpoint - Descending</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSort" />
+    </Node>
+    <Node ToolID="7">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="726" y="126" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="0">C:\Users\Ansh\Downloads\table-26\hesa_graduate_outcomes_clean.csv</File>
+          <Passwords />
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <LineEndStyle>CRLF</LineEndStyle>
+            <Delimeter>,</Delimeter>
+            <ForceQuotes>False</ForceQuotes>
+            <HeaderRow>True</HeaderRow>
+            <CodePage>28591</CodePage>
+            <WriteBOM>True</WriteBOM>
+            <SuppressBlankFile>False</SuppressBlankFile>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>hesa_graduate_outcomes_clean.csv</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="2" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Output" />
+      <Destination ToolID="3" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="True" />
+      <Destination ToolID="4" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="4" Connection="Output" />
+      <Destination ToolID="5" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="5" Connection="Output" />
+      <Destination ToolID="6" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="6" Connection="Output" />
+      <Destination ToolID="7" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <DefaultTZ value="Local" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <IsTemplate value="False" />
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>hesa_graduate_outcomes_clean</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="a5242a14-54c4-4ff4-a34a-ff36fc363cbe" />
+      <Telemetry>
+        <PreviousWorkflowId value="fe221fcf-ac65-47a8-b94d-479cb684edd1" />
+        <OriginWorkflowId value="fe221fcf-ac65-47a8-b94d-479cb684edd1" />
+      </Telemetry>
+      <PlatformWorkflowId value="" />
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>
